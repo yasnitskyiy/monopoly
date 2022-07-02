@@ -79,7 +79,7 @@ body {
 }
 
 .game {
-    background-color: rgba(0, 255, 196, 0.23);
+    background-color: rgb(11, 127, 139);
     font-weight: bold;
     margin: 10px;
     font-size: 1.5em;
@@ -95,7 +95,7 @@ body {
     position: absolute;
     right: -28px;
     top: -10px;
-    background-color: rgb(33, 117, 110);
+    background-color: rgb(11, 127, 139);
     min-width: 265px;
     border-radius: 30px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
