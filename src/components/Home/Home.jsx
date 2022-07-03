@@ -1,10 +1,9 @@
 import c from './Home.module.css'
-import cg from '../../App.module.css'
 import templateFeatures from "../../images/template.png";
 
 const Home = (props) => {
     return (
-        <div className={`${c.content} ${cg.center}`}>
+        <div>
             <div className={c.features}>
                 <div>
                     <img src={templateFeatures} alt="templateFeatures"/>
