@@ -8,10 +8,10 @@ const Authentication = (props) => {
             <h3 className={c.hText}>Authentication</h3>
 
             <label className={c.formLabel} htmlFor="email">Email</label>
-            <input className={c.formInput} type="text" id="email"/>
+            <input className={c.formInput} type="text" id="email" required/>
 
             <label className={c.formLabel} htmlFor="password">Password</label>
-            <input className={c.formInput} type="password" id="password"/>
+            <input className={c.formInput} type="password" id="password" required/>
 
             <button className={c.formSubmit} type="submit">Log in</button>
             <p className={c.alreadyText}>Don't have an account yet? <NavLink to="/reg">Sign Up</NavLink></p>
