@@ -1,17 +1,16 @@
-import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
+import Home from "./screens/home/Home";
 import Footer from "./components/Footer/Footer";
-import Authentication from "./components/Authentication/Authentication";
-
+import Authentication from "./screens/account/Authentication/Authentication";
 import {Routes, Route} from "react-router-dom";
-import c from './App.module.css';
-import Registration from "./components/Registration/Registration";
+import c from './App.module.scss';
+import Registration from "./screens/account/Registration/Registration";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 const App = () => {
     return (
         <div className={c.container}>
-            <Header />
+            <HeaderContainer />
 
             <div className={`${c.content} ${c.center}`}>
                 <Routes>

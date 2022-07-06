@@ -1,5 +1,5 @@
-import c from './Footer.module.css'
-import cg from '../../App.module.css'
+import c from './Footer.module.scss'
+import cg from '../../App.module.scss'
 
 const Footer = (props) => {
     return (

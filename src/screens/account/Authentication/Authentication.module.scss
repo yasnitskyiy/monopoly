@@ -1,35 +1,29 @@
 .form {
-    width: 400px;
-    background-color: rgba(255, 255, 255, 0.03);
-    margin: 35px auto;
-    border-radius: 10px;
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-    padding: 35px 35px;
-}
-.form * {
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-}
-.hText {
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.03);
+  margin: 35px auto;
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 35px 35px;
+
+  h3 {
     font-size: 40px;
     margin: 0;
     font-weight: 700;
     line-height: 42px;
     text-align: center;
-}
+  }
 
-.formLabel {
+  label {
     display: block;
     margin-top: 10px;
     font-size: 16px;
     font-weight: 500;
-}
+  }
 
-.formInput {
+  input[type=text], input[type=password] {
     display: block;
     height: 50px;
     width: 95%;
@@ -39,16 +33,13 @@
     font-size: 14px;
     font-weight: 300;
     padding: 0 10px;
-}
 
-::placeholder {
-    color: #e1e1e1;
-}
+    &:hover {
+      outline: 2px solid #0001;
+    }
+  }
 
-.formInput:hover{
-    outline: 2px solid #0001;
-}
-.formSubmit {
+  input[type=submit] {
     margin-top: 20px;
     width: 100%;
     background-color: #ffffff;
@@ -58,7 +49,16 @@
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
-}
-.alreadyText{
+  }
+
+  p {
     text-align: center;
+  }
+
+  * {
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+  }
 }

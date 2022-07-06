@@ -1,11 +1,12 @@
+$app-background: linear-gradient(90deg, rgba(11, 127, 139, 1) 0%, rgba(89, 89, 198, 1) 100%);
+
 @font-face {
     font-family: 'Nunito';
-    src: url('Nunito-Regular.ttf');
+    src: url('./fonts/Nunito-Regular.ttf');
 }
 
 body {
-    background: rgb(11, 127, 139);
-    background: linear-gradient(90deg, rgba(11, 127, 139, 1) 0%, rgba(89, 89, 198, 1) 100%);
+    background: $app-background;
     font-family: Nunito;
     color: #ffffff;
 }
