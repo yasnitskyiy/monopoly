@@ -7,12 +7,12 @@ let mapStateToProps = (state) => {
     })
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return({
+// let mapDispatchToProps = (dispatch) => {
+//     return({
+//
+//     })
+// }
 
-    })
-}
-
-const FeaturesContainer = connect(mapStateToProps, mapDispatchToProps)(Features)
+const FeaturesContainer = connect(mapStateToProps)(Features)
 
 export default FeaturesContainer

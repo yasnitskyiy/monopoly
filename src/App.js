@@ -5,6 +5,7 @@ import {Routes, Route} from "react-router-dom";
 import c from './App.module.scss';
 import Registration from "./screens/account/Registration/Registration";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Test from "./screens/stats/Test";
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
                     <Route  path='/' element={<Home />} />
                     <Route  path='/auth' element={<Authentication />} />
                     <Route  path='/reg' element={<Registration />} />
+                    <Route path='/stats' element={<Test />} />
                 </Routes>
             </div>
 
