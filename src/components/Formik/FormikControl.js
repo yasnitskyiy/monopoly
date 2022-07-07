@@ -1,8 +1,7 @@
 import Input from "./Input";
 
-
 const FormikControl = (props) => {
-    const { control , ...rest} = props
+    const { control , ...rest } = props
     switch (control){
         case 'input':
             return <Input {...rest} />

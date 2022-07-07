@@ -1,11 +1,10 @@
 import Home from "./screens/home/Home";
 import Footer from "./components/Footer/Footer";
-import Authentication from "./screens/account/Authentication/Authentication";
+import AuthenticationFormik from "./screens/account/AuthenticationFormik/AuthenticationFormik";
 import {Routes, Route} from "react-router-dom";
 import c from './App.module.scss';
-import Registration from "./screens/account/Registration/Registration";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Test from "./screens/stats/Test";
+import RegistrationFormik from "./screens/account/RegistrationForm/RegistrationFormik";
 
 
 const App = () => {
@@ -15,10 +14,9 @@ const App = () => {
 
             <div className={`${c.content} ${c.center}`}>
                 <Routes>
-                    <Route  path='/' element={<Home />} />
-                    <Route  path='/auth' element={<Authentication />} />
-                    <Route  path='/reg' element={<Registration />} />
-                    <Route path='/stats' element={<Test />} />
+                    <Route path='/' element={<Home />} />
+                    <Route path='/auth' element={<AuthenticationFormik />} />
+                    <Route path='/reg' element={<RegistrationFormik />} />
                 </Routes>
             </div>
 
