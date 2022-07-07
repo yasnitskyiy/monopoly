@@ -1,24 +1,22 @@
 import React from 'react'
-import * as Yup from 'yup'
 import {Form, Formik} from "formik"
 import FormikControl from "../../../components/Formik/FormikControl"
 import '../FormikFormStyle.scss'
 import {NavLink} from "react-router-dom"
+import * as Yup from "yup";
 
-const AuthenticationFormik = () => {
+const AuthenticationFormik = (props) => {
     const initialValues = {
         email: '',
         password: '',
-        re_password: '',
-        nickname: '',
     }
     const validationSchema = Yup.object({
         email: Yup.string().required('Email address is required!'),
         password: Yup.string().required('Password is required!'),
-        re_password: Yup.string().required('Repeat your password please!'),
-        nickname: Yup.string().required('Nickname is required!'),
     })
-    const onSubmit = (values) => console.log('Form data', values)
+    const onSubmit = (values) => {
+        props.userAuth(values.email, values.password)
+    }
 
     return (
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
@@ -26,9 +24,9 @@ const AuthenticationFormik = () => {
                 (
                     <Form>
                         <h3>AUTHENTICATION</h3>
-                        <FormikControl control='input' type='email' label='Email' name='email' />
-                        <FormikControl control='input' type='password' label='Password' name='password' />
-                        <button type='submit'>Log in</button>
+                        <FormikControl control='input' type='email' label='Email' name='email'/>
+                        <FormikControl control='input' type='password' label='Password' name='password'/>
+                        <button type='submit' disabled={!formik.isValid}>Log in</button>
                         <p>Don't have an account yet? <NavLink to="/reg">Sign Up</NavLink></p>
                     </Form>
                 )

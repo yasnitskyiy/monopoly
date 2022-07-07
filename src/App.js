@@ -1,22 +1,20 @@
 import Home from "./screens/home/Home";
 import Footer from "./components/Footer/Footer";
-import AuthenticationFormik from "./screens/account/AuthenticationFormik/AuthenticationFormik";
 import {Routes, Route} from "react-router-dom";
 import c from './App.module.scss';
-import HeaderContainer from "./components/Header/HeaderContainer";
-import RegistrationFormik from "./screens/account/RegistrationForm/RegistrationFormik";
-
+import Header from "./components/Header/Header";
+import AuthenticationFormikContainer from "./screens/account/AuthenticationFormik/AuthenticationFormikContainer";
 
 const App = () => {
     return (
         <div className={c.container}>
-            <HeaderContainer />
+            <Header />
 
             <div className={`${c.content} ${c.center}`}>
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/auth' element={<AuthenticationFormik />} />
-                    <Route path='/reg' element={<RegistrationFormik />} />
+                    <Route path='/auth' element={<AuthenticationFormikContainer />} />
+                    {/*<Route path='/reg' element={<RegistrationFormik/>} />*/}
                 </Routes>
             </div>
 

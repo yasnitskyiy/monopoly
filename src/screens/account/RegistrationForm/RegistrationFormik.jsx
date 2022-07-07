@@ -1,27 +1,12 @@
 import React from 'react';
-import * as Yup from 'yup'
 import { Form, Formik } from "formik";
 import FormikControl from "../../../components/Formik/FormikControl";
 import '../FormikFormStyle.scss'
 import { NavLink } from "react-router-dom";
 
-const RegistrationFormik = () => {
-    const initialValues = {
-        email: '',
-        password: '',
-        re_password: '',
-        nickname: '',
-    }
-    const validationSchema = Yup.object({
-        email: Yup.string().required('Email address is required!'),
-        password: Yup.string().required('Password is required!'),
-        re_password: Yup.string().required('Repeat your password please!'),
-        nickname: Yup.string().required('Nickname is required!'),
-    })
-    const onSubmit = (values) => console.log('Form data', values)
-
+const RegistrationFormik = (props) => {
     return (
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        <Formik initialValues={props.initialValues} validationSchema={props.validationSchema} onSubmit={props.onSubmit}>
             { formik =>
                 (
                     <Form>
