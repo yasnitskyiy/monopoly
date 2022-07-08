@@ -1,7 +1,7 @@
 import React from 'react';
 import {ErrorMessage, Field} from "formik";
 import TextError from "./TextError";
-import './Input.Module.scss'
+import './Input.scss'
 
 const Input = (props) => {
     const {label, name, ...rest} = props

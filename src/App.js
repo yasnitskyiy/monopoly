@@ -1,24 +1,24 @@
-import Home from "./screens/home/Home";
-import Footer from "./components/Footer/Footer";
+import React from "react";
 import {Routes, Route} from "react-router-dom";
-import c from './App.module.scss';
-import Header from "./components/Header/Header";
-import AuthenticationFormikContainer from "./screens/account/AuthenticationFormik/AuthenticationFormikContainer";
+import {AuthProvider} from "./context/AuthContext";
+
+import './App.scss';
+
+import Home from './screens/home/Home';
+import SignUp from "./screens/account/SignUp";
+import Login from "./screens/account/Login";
+import PrivateRoute from "./screens/account/PrivateRoute";
 
 const App = () => {
     return (
-        <div className={c.container}>
-            <Header />
-
-            <div className={`${c.content} ${c.center}`}>
+        <div>
+            <AuthProvider>
                 <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/auth' element={<AuthenticationFormikContainer />} />
-                    {/*<Route path='/reg' element={<RegistrationFormik/>} />*/}
+                    <Route path="/" element={<PrivateRoute> <Home/> </PrivateRoute>}/>
+                    <Route path="/signup" element={<SignUp/>}/>
+                    <Route path="/login" element={<Login/>}/>
                 </Routes>
-            </div>
-
-            <Footer />
+            </AuthProvider>
         </div>
     );
 }

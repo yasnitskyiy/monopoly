@@ -1,10 +1,10 @@
-import c from './Footer.module.scss'
-import cg from '../../App.module.scss'
+import './Footer.scss'
+import '../../App.scss'
 
 const Footer = (props) => {
     return (
-        <div className={`${c.footer}`}>
-            <div className={`${cg.center}`}>
+        <div className={`footer`}>
+            <div className={`center`}>
 
             </div>
         </div>

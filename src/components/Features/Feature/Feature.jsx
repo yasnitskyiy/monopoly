@@ -1,4 +1,4 @@
-import './Feature.module.scss'
+import './Feature.scss'
 
 const Feature = (props) => {
     return (
