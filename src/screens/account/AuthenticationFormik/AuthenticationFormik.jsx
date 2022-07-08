@@ -2,10 +2,13 @@ import React from 'react'
 import {Form, Formik} from "formik"
 import FormikControl from "../../../components/Formik/FormikControl"
 import '../FormikFormStyle.scss'
-import {NavLink} from "react-router-dom"
+import {NavLink, useNavigate } from "react-router-dom"
 import * as Yup from "yup";
 
 const AuthenticationFormik = (props) => {
+
+    let navigate = useNavigate();
+
     const initialValues = {
         email: '',
         password: '',
@@ -16,6 +19,7 @@ const AuthenticationFormik = (props) => {
     })
     const onSubmit = (values) => {
         props.userAuth(values.email, values.password)
+        navigate('/')
     }
 
     return (
