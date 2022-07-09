@@ -7,7 +7,7 @@ import './App.scss';
 import Home from './screens/home/Home';
 import SignUp from "./screens/account/SignUp";
 import Login from "./screens/account/Login";
-import PrivateRoute from "./screens/account/PrivateRoute";
+import PrivateRoute from "./screens/PrivateRoute";
 
 const App = () => {
     return (

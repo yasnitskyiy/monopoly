@@ -1,70 +1,66 @@
-import React, {useState,} from 'react'
-import {Form, Formik} from "formik"
-import FormikControl from "../../components/Formik/FormikControl"
-import './FormikFormStyle.scss'
-import {NavLink, useNavigate} from "react-router-dom"
-import * as Yup from "yup";
+import React, {useRef, useState} from "react";
+import {Form, Button, Alert, } from "react-bootstrap";
 import {useAuth} from "../../context/AuthContext";
-import TextError from "../../components/Formik/TextError";
+import {Link, useNavigate} from "react-router-dom";
+import './FormStyle.scss'
 
+const Signup = () => {
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const passwordConfirmRef = useRef();
+    const {signup} = useAuth();
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-const SignUp = (props) => {
-
-    const { signup } = useAuth()
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState("")
-    let navigate = useNavigate();
-    // const history = useHistory()
-
-    const initialValues = {
-        email: '',
-        password: '',
-        passwordConfirmation: ''
-    }
-
-    const validationSchema = Yup.object({
-        email: Yup.string()
-            .email('Ivalid email format')
-            .required('Email address is required!'),
-        password: Yup.string()
-            .required('Password is required!')
-            .min(7, 'Password length should be 7 chars minimum.'),
-        passwordConfirmation: Yup.string()
-            .oneOf([Yup.ref('password'), null], 'Passwords must match')
-            .required('Password is required!')
-    })
     async function handleSubmit(e) {
+        e.preventDefault()
 
-        try {
-            setError("")
-            setLoading(true)
-            await signup(e.email, e.password)
-            navigate("/login")
-        } catch {
-            setError("Failed! Incorrect e-mail or might be already used!")
+        if(passwordRef.current.value.length < 8){
+            return setError("Passwords length must be more then 8 chars");
+        } else if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+            return setError("Passwords do not match");
+        } else if (emailRef.current.value === '') {
+            return setError("Enter email address");
         }
 
-        setLoading(false)
+        try {
+            setError("");
+            setLoading(true);
+            await signup(emailRef.current.value, passwordRef.current.value);
+            navigate("/login");
+        } catch {
+            setError("Failed to create an account, enter valid email");
+        }
+
+        setLoading(false);
     }
 
     return (
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-            { formik =>
-                (
-                    <Form>
-                        <h3>CREATE ACCOUNT</h3>
-                        {error && <TextError>{error}</TextError>}
-                        <FormikControl control='input' type='email' label='Email' name='email' />
-                        <FormikControl control='input' type='password' label='Password' name='password' />
-                        <FormikControl control='input' type='password' label='Confirm password' name='passwordConfirmation' />
-
-                        <button disabled={loading} type='submit'>Create account</button>
-                        <p>Already have an account? <NavLink to="/login">Log In</NavLink></p>
-                    </Form>
-                )
-            }
-        </Formik>
-    );
-};
-
-export default SignUp;
+        <section id="cover" className="min-vh-100">
+            <div id="cover-caption">
+                <Form onSubmit={handleSubmit} noValidate className='center w-100 p-3'>
+                    <h3 className="text-center text-light mb-2">CREATE ACCOUNT</h3>
+                    {error && <Alert variant="danger" className='p-2 text-center mb-0'>{error}</Alert>}
+                    <Form.Group id="email">
+                        <Form.Label className='text-light'>Email</Form.Label>
+                        <Form.Control type="email" ref={emailRef} placeholder={'Enter email address'}/>
+                    </Form.Group>
+                    <Form.Group id="password">
+                        <Form.Label className='text-light'>Password</Form.Label>
+                        <Form.Control type="password" ref={passwordRef} placeholder={'Enter password'}/>
+                    </Form.Group>
+                    <Form.Group id="password-confirm">
+                        <Form.Label className='text-light'>Password Confirmation</Form.Label>
+                        <Form.Control type="password" ref={passwordConfirmRef} placeholder={'Confirm your password'}/>
+                    </Form.Group>
+                    <Button disabled={loading} className="w-100 mt-3 mb-3" type="submit">
+                        Sign Up
+                    </Button>
+                    <p className="text-center text-light">Already have an account? <Link className='text-light' to="/login">Log In</Link></p>
+                </Form>
+            </div>
+        </section>
+    )
+}
+export default Signup;

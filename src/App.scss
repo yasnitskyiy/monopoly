@@ -4,7 +4,9 @@ $app-background: linear-gradient(90deg, rgba(11, 127, 139, 1) 0%, rgba(89, 89, 1
     font-family: 'Nunito';
     src: url('./fonts/Nunito-Regular.ttf');
 }
-
+html{
+    height: 100%;
+}
 body {
     background: $app-background;
     font-family: Nunito;
