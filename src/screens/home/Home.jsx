@@ -6,11 +6,13 @@ import {Container} from "react-bootstrap";
 const Home = (props) => {
     return (
         <>
+            <div className='d-flex min-vh-100 flex-column'>
             <Header/>
-            <Container>
+            <Container className='flex-grow-1'>
                 <FeaturesContainer store={props.store}/>
             </Container>
-            <Footer className='mt-auto'/>
+            <Footer className=''/>
+            </div>
         </>
     )
 }

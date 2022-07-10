@@ -1,6 +1,6 @@
 import {combineReducers, legacy_createStore} from "redux";
 import homeReducer from "./homeReducer";
-import userMenuReducer from "./UserMenuReducer";
+import userMenuReducer from "./UserReducer";
 
 let reducers = combineReducers({
     homePage: homeReducer,

@@ -2,16 +2,26 @@ import React, {useRef, useState} from "react";
 import {Form, Button, Alert, } from "react-bootstrap";
 import {useAuth} from "../../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
+
+import { db } from '../../firebase'
 import './FormStyle.scss'
+import {collection, addDoc} from "@firebase/firestore";
 
 const Signup = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-    const {signup} = useAuth();
+    const { signup } = useAuth();
+    const { getUserUID } = useAuth();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+
+    const usersCollectionRef = collection(db, 'users');
+
+    const createUser = async (id) => {
+        await addDoc(usersCollectionRef, {id: id, name: null, games: null})
+    }
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -28,6 +38,7 @@ const Signup = () => {
             setError("");
             setLoading(true);
             await signup(emailRef.current.value, passwordRef.current.value);
+            await createUser(getUserUID());
             navigate("/login");
         } catch {
             setError("Failed to create an account, enter valid email");

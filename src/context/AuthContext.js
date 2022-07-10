@@ -27,6 +27,10 @@ export function AuthProvider({ children }) {
         return auth.sendPasswordResetEmail(email)
     }
 
+    function getUserUID(){
+        return auth.currentUser.uid;
+    }
+
     function updateEmail(email) {
         return currentUser.updateEmail(email)
     }
@@ -51,7 +55,8 @@ export function AuthProvider({ children }) {
         logout,
         resetPassword,
         updateEmail,
-        updatePassword
+        updatePassword,
+        getUserUID
     }
 
     return (

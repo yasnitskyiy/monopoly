@@ -24,7 +24,7 @@ let initialState = {
     ]
 }
 
-const UserMenuReducer = (state= initialState, action) => {
+const UserReducer = (state= initialState, action) => {
     switch (action.type){
         case AUTH:
             let id = -1
@@ -59,4 +59,4 @@ export const signOutActionCreator = () => ({
     type: SIGN_OUT,
 })
 
-export default UserMenuReducer
+export default UserReducer
