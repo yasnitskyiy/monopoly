@@ -1,18 +1,16 @@
 import FeaturesContainer from "../../components/Features/FeaturesContainer";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-//import './Home.scss';
+import {Container} from "react-bootstrap";
 
 const Home = (props) => {
     return (
         <>
-        <Header/>
-        <div className={'container'}>
-            <div className={`content center`}>
+            <Header/>
+            <Container>
                 <FeaturesContainer store={props.store}/>
-            </div>
-            <Footer/>
-        </div>
+            </Container>
+            <Footer className='mt-auto'/>
         </>
     )
 }

@@ -26,6 +26,14 @@ let initialState = {
                 'officia, ut? Animi cum eaque earum eum ipsum, laboriosam omnis praesentium reiciendis sequi sint sit' +
                 'tempore unde.'
         },
+        {
+            id: 3,
+            imageSrc: templateFeatures,
+            title: 'ACHIEVEMENTS',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur eveniet in nesciunt nostrum' +
+                'officia, ut? Animi cum eaque earum eum ipsum, laboriosam omnis praesentium reiciendis sequi sint sit' +
+                'tempore unde.'
+        },
     ]
 }
 
