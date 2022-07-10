@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import UserMenu from "./UserMenu";
-import {signOutActionCreator} from "../../store/UserReducer";
+import {signOutActionCreator} from "../../store/userReducer";
 
 let mapStateToProps = (state) => {
     return ({

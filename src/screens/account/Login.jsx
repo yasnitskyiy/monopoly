@@ -1,7 +1,9 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Form, Button, Alert, } from "react-bootstrap";
 import {useAuth} from "../../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
+import {collection, getDocs} from "@firebase/firestore";
+import {db} from "../../firebase";
 
 const Login = () => {
     const emailRef = useRef();
@@ -10,6 +12,20 @@ const Login = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+
+    const [users, setUsers] = useState([])
+    const [user, setUser] = useState({})
+    const usersCollectionRef = collection(db, 'users');
+
+    useEffect(() => {
+        const getUsers = async () => {
+            const data = await getDocs(usersCollectionRef);
+            setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+        };
+
+        getUsers();
+
+    }, []);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -25,9 +41,10 @@ const Login = () => {
             setError("");
             setLoading(true);
             await login(emailRef.current.value, passwordRef.current.value);
+            let userData = users.filter((user) => (user.email === emailRef.current.value && user.email !== null))[0]
             navigate("/");
         } catch {
-            setError("Incorrect password or email");
+            setError("Incorrect email or password");
         }
 
         setLoading(false);

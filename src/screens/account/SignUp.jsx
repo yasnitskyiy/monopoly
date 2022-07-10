@@ -19,8 +19,19 @@ const Signup = () => {
 
     const usersCollectionRef = collection(db, 'users');
 
-    const createUser = async (id) => {
-        await addDoc(usersCollectionRef, {id: id, name: null, games: null})
+    const createUser = async (uid, email) => {
+        await addDoc(usersCollectionRef, {
+            uid: uid,
+            email: email,
+            name: null,
+            games: {
+                total: 0,
+                wins: 0,
+            },
+            achievements: [],
+            friends: [],
+            credits: 0
+        })
     }
 
     async function handleSubmit(e) {
@@ -38,7 +49,7 @@ const Signup = () => {
             setError("");
             setLoading(true);
             await signup(emailRef.current.value, passwordRef.current.value);
-            await createUser(getUserUID());
+            await createUser(getUserUID(), emailRef.current.value);
             navigate("/login");
         } catch {
             setError("Failed to create an account, enter valid email");
