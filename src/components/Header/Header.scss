@@ -1,26 +1,21 @@
 $font-color: #fff;
 $default-background-color: rgb(11, 127, 139);
 
-.header {
+.navbar{
   background-color: rgba(0, 0, 0, 0.3);
-  width: 100%;
 
-  a {
-    text-decoration: none;
-    color: $font-color;
+  .container{
+    max-width: 1200px;
   }
-
-  .headerContent {
-    display: flex;
-    height: 100px;
-    align-items: center;
-    justify-content: space-between;
-
-    h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
+  .btn-play{
+    background-color: $default-background-color;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+  a{
+    text-align: center;
+  }
+  .dropdown-menu{
+    min-width: 250px;
   }
 }
-
-

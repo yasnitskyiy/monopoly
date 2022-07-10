@@ -50,7 +50,7 @@ const Login = () => {
                     <Button disabled={loading} className="w-100 mt-3 mb-3" type="submit">
                         Log In
                     </Button>
-                    <p className="text-center text-light">Need an account? <Link className='text-light' to="/signup">Sign Up</Link></p>
+                    <p className="text-center text-light">Need an account? <Link className='text-light' to="/signup" >Sign Up</Link></p>
                 </Form>
             </div>
         </section>
