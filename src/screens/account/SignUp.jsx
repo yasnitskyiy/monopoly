@@ -49,12 +49,11 @@ const Signup = () => {
             setError("");
             setLoading(true);
             await signup(emailRef.current.value, passwordRef.current.value);
-            await createUser(getUserUID(), emailRef.current.value);
             navigate("/login");
         } catch {
             setError("Failed to create an account, enter valid email");
         }
-
+        await createUser(getUserUID(), emailRef.current.value);
         setLoading(false);
     }
 

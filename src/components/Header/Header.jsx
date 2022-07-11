@@ -23,7 +23,7 @@ const Header = (props) => {
                         <Nav.Link className='btn-play menu' href="#game">PLAY GAME</Nav.Link>
                         <Nav.Link className='menu m-auto' href="#features">Stats</Nav.Link>
                         <Nav.Link className='menu m-auto' href="#pricing">Friends</Nav.Link>
-                        <NavDropdown title="Profile" id="collasible-nav-dropdown" align="end" className='m-auto menu' menuVariant="dark">
+                        <NavDropdown title="Profile" id="collasible-nav-dropdown" align="end" className='m-auto menu'>
                             <NavDropdown.ItemText href="#action/3.1">
                                 <Row >
                                     <Col md xs className='m-auto text-center'>

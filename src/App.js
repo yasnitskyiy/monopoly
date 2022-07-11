@@ -6,17 +6,17 @@ import './App.scss';
 
 import Home from './screens/home/Home';
 import SignUp from "./screens/account/SignUp";
-import Login from "./screens/account/Login";
 import PrivateRoute from "./screens/PrivateRoute";
+import Login from "./screens/account/Login";
 
 const App = () => {
     return (
         <div>
             <AuthProvider>
                 <Routes>
-                    <Route path="/" element={<PrivateRoute> <Home/> </PrivateRoute>}/>
+                    <Route path="/" element={<PrivateRoute> <Home /> </PrivateRoute>}/>
                     <Route path="/signup" element={<SignUp/>}/>
-                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/login" element={<Login />}/>
                 </Routes>
             </AuthProvider>
         </div>

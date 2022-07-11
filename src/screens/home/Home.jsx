@@ -1,7 +1,10 @@
+import React from "react";
+
 import FeaturesContainer from "../../components/Features/FeaturesContainer";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import {Container} from "react-bootstrap";
+
 
 const Home = (props) => {
     return (
