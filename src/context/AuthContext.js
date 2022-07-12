@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect } from "react"
 import {auth, db} from "../firebase"
-import {addDoc, collection, getDocs} from "@firebase/firestore";
-
 const AuthContext = React.createContext()
 
 export function useAuth() {
@@ -11,19 +9,6 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
-
-    const [users, setUsers] = useState([]);
-    const usersCollectionRef = collection(db, 'users');
-
-    useEffect(() => {
-        const getUsers = async () => {
-            const data = await getDocs(usersCollectionRef);
-            setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
-        };
-
-        getUsers();
-
-    }, []);
 
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password)
@@ -41,12 +26,19 @@ export function AuthProvider({ children }) {
         return auth.sendPasswordResetEmail(email)
     }
 
-    function getCurrentUser(){
-        return users.filter(user => user.name);
+    function getUserUID(){
+        console.log(`1. ${auth.currentUser.uid}`);
+        return auth.currentUser.uid;
     }
 
     function updateEmail(email) {
         return currentUser.updateEmail(email)
+    }
+
+    function getUserData(uid) {
+        // db.ref('users/' + "userB'sUID").once("value", snap => {
+        //     console.log(snap.val())
+        // })
     }
 
     function updatePassword(password) {
@@ -70,7 +62,7 @@ export function AuthProvider({ children }) {
         resetPassword,
         updateEmail,
         updatePassword,
-        getCurrentUser
+        getUserUID
     }
 
     return (

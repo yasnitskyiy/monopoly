@@ -31,7 +31,7 @@ const Signup = () => {
             achievements: [],
             friends: [],
             credits: 0
-        })
+        });
     }
 
     async function handleSubmit(e) {
