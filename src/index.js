@@ -21,7 +21,7 @@ const store = configureStore({
 root.render(
     <BrowserRouter>
         <Provider store={store}>
-            <App/>
+            <App />
         </Provider>
     </BrowserRouter>
 );

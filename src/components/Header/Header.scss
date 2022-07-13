@@ -1,8 +1,9 @@
 $font-color: #fff;
 $default-background-color: rgb(11, 127, 139);
+$darkness: rgba(0, 0, 0, 0.3);
 
 .navbar {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: $darkness;
 
   .container {
     max-width: 1200px;

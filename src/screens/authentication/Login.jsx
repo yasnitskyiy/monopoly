@@ -1,12 +1,10 @@
-import React, {useRef, useState, useEffect} from "react";
+import React, {useRef, useState } from "react";
 import {Form, Button, Alert, } from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../../context/AuthContext";
 
 import { useDispatch } from "react-redux";
 import { loginGetUserData } from "../../features/user";
-import { collection, getDocs } from "@firebase/firestore";
-import { db } from "../../firebase";
 
 const Login = () => {
     const emailRef = useRef();
@@ -17,23 +15,6 @@ const Login = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const { getUserUID } = useAuth();
-
-
-
-    // const getUsers = async () => {
-    //     let arr = [];
-    //     const data = await getDocs(usersCollectionRef);
-    //     data.forEach(doc => {
-    //         arr.push(doc.data());
-    //     })
-    //     return arr;
-    // }
-    // useEffect(() => {
-    //     const getUsers = async () => {
-    //         const data = await getDocs(userCollectionRef);
-    //         return data.docs.map((doc) => ({...doc.data(), id: doc.id}));
-    // })
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -49,11 +30,12 @@ const Login = () => {
             setError("");
             setLoading(true);
             await login(emailRef.current.value, passwordRef.current.value);
-            await dispatch(loginGetUserData());
-            setLoading(false);
+            await dispatch(loginGetUserData(emailRef.current.value));
+            await setLoading(false);
             navigate("/");
         } catch {
             setError("Incorrect email or password");
+            setLoading(false);
         }
 
     }

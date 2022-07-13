@@ -1,41 +1,48 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { collection, getDocs } from "@firebase/firestore";
 import { db } from "../firebase";
 
-// const initialStateValue = {
-//     // uid: '',
-//     // email: '',
-//     // name: '',
-//     // games: {
-//     //     total: 0,
-//     //     wins: 0,
-//     // },
-//     // achievements: [],
-//     // friends: [],
-//     // credits: 0
-// }
+let initialStateValue = {
+    uid: '',
+    email: '',
+    name: 'NEW USER',
+    games: {
+        total: 0,
+        wins: 0,
+    },
+    achievements: [],
+    friends: [],
+    credits: 0
+}
+
+export const loginGetUserData = createAsyncThunk(
+    'users/loginGetUserData',
+    async (email) => {
+        const usersCollectionRef = collection(db, 'users');
+        const data = await getDocs(usersCollectionRef);
+        return {
+            email: email,
+            data: data.docs.map((doc) => ({...doc.data(), id: doc.id}))
+        };
+    }
+);
 
 export const userSlice = createSlice({
     name: 'user',
-    initialState: {email: ''},
+    initialState: {
+        value: initialStateValue
+    },
     reducers: {
-        loginGetUserData : async (state, action) => {
-            try{
-                const usersCollectionRef = collection(db, 'users');
-                const data = await getDocs(usersCollectionRef);
-                const arr = data.docs.map( async (doc) => await doc.data().email)
-                //const arr = data.map
-                // data.forEach(doc => {
-                //     arr.push(doc.data().email);
-                // })
-                // console.log(arr[0]);
-                state.email = arr[0];
-            }catch (e){
-                console.log(e);
-            }
+        clearUserData: (state) => {
+            state.value = initialStateValue;
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(loginGetUserData.fulfilled,  (state, action) => {
+            state.value = action.payload.data.filter(user => user.email === action.payload.email)[0];
+        });
     }
 });
 
-export const {loginGetUserData} = userSlice.actions;
+export const { clearUserData } = userSlice.actions;
 export default userSlice.reducer;

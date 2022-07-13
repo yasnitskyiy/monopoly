@@ -1,5 +1,28 @@
+$font-color: #fff;
+$default-background-color: rgb(11, 127, 139);
+$darkness: rgba(0, 0, 0, 0.3);
+
+
 .footer {
     background-color: rgba(0, 0, 0, 0.3);
-    height: 50px;
     width: 100%;
+
+    a{
+        color: $font-color;
+
+        &:hover{
+            color: $font-color;
+            text-decoration-color: red;
+        }
+    }
+}
+
+.social{
+    span{
+        margin: 10px;
+    }
+    img{
+        height: 40px;
+        margin: 5px;
+    }
 }

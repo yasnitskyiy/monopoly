@@ -11,8 +11,8 @@ const Signup = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-    const { signup } = useAuth();
-    const { getUserUID } = useAuth();
+    const { signup, getUserUID } = useAuth();
+
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Signup = () => {
         await addDoc(usersCollectionRef, {
             uid: uid,
             email: email,
-            name: null,
+            name: 'NEW USER',
             games: {
                 total: 0,
                 wins: 0,
@@ -51,7 +51,7 @@ const Signup = () => {
             await signup(emailRef.current.value, passwordRef.current.value);
             navigate("/login");
         } catch {
-            setError("Failed to create an account, enter valid email");
+            setError("Failed to create an authenticationaccount, enter valid email");
         }
         await createUser(getUserUID(), emailRef.current.value);
         setLoading(false);

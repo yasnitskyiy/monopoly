@@ -4,7 +4,7 @@ import templateFeatures from "../images/template.png";
 export const homeSlice = createSlice({
     name: 'home',
     initialState: {
-        value: [
+        features: [
             {
                 id: 0,
                 imageSrc: templateFeatures,

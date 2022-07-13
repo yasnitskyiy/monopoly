@@ -1,0 +1,27 @@
+$font-color: #fff;
+$default-background-color: rgb(11, 127, 139);
+$darkness: rgba(0, 0, 0, 0.3);
+
+.profile_info {
+    color: #d5d5d5;
+
+    .userName {
+        font-size: 50px;
+        text-align: center;
+        color: $font-color;
+    }
+
+    .profile_photo {
+        height: 200px;
+        width: 200px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .stats {
+        font-size: 30px;
+        span{
+            padding: 0 5%;
+        }
+    }
+}

@@ -1,33 +1,41 @@
 import './Header.scss'
 import photo from '../../images/Person.jpg'
-import {Container, Navbar, Nav, NavDropdown, Col, Row} from "react-bootstrap";
-import {useAuth} from "../../context/AuthContext";
+import { Container, Navbar, Nav, NavDropdown, Col, Row } from "react-bootstrap";
+import { useAuth } from "../../context/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { clearUserData } from '../../features/user';
 
-const Header = (props) => {
+const Header = () => {
 
-    const { logout } = useAuth()
+    const {logout} = useAuth()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    function acc_logout (){
-        logout()
+    async function acc_logout() {
+        await logout()
+        dispatch(clearUserData());
+        navigate('/')
     }
+
+    const userName = useSelector((state) => state.user.value.name);
 
     return (
         <Navbar className='navbar' collapseOnSelect expand="lg" variant="dark">
             <Container>
-                <Navbar.Brand href="/">
+                <Navbar.Brand as={Link} to="/">
                     <h1>MONOPOLY UA</h1>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse className="justify-content-end" >
+                <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+                <Navbar.Collapse className="justify-content-end">
                     <Nav className='text-white'>
-                        <Nav.Link className='btn-play menu' href="#game">PLAY GAME</Nav.Link>
-                        <Nav.Link className='menu m-auto' href="#features">Stats</Nav.Link>
-                        <Nav.Link className='menu m-auto' href="#pricing">Friends</Nav.Link>
+                        <Nav.Link className='btn-play menu' as={Link} to="/game">PLAY GAME</Nav.Link>
+                        <Nav.Link className='menu m-auto' as={Link} to="/friends">Friends</Nav.Link>
                         <NavDropdown title="Profile" id="collasible-nav-dropdown" align="end" className='m-auto menu'>
-                            <NavDropdown.ItemText href="#action/3.1">
-                                <Row >
+                            <NavDropdown.Item as={Link} to="/profile">
+                                <Row>
                                     <Col md xs className='m-auto text-center'>
-                                        AAAAAA15AAAAAAA
+                                        {userName}
                                     </Col>
                                     <Col md={3} xs={12}>
                                         <img
@@ -35,21 +43,20 @@ const Header = (props) => {
                                             width="40"
                                             height="40"
                                             className="d-block m-auto"
-                                            alt="React Bootstrap logo"
+                                            alt='image not found'
                                         />
                                     </Col>
-
                                 </Row>
-                            </NavDropdown.ItemText>
-                            <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/" onClick={acc_logout}>Sign out</NavDropdown.Item>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/settings">Settings</NavDropdown.Item>
+                            <NavDropdown.Divider/>
+                            <NavDropdown.Item onClick={acc_logout}>Sign out</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    )
+    );
 }
 
 export default Header
