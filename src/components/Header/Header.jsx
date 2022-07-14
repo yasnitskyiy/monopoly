@@ -1,24 +1,21 @@
 import './Header.scss'
-import photo from '../../images/Person.jpg'
 import { Container, Navbar, Nav, NavDropdown, Col, Row } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { clearUserData } from '../../features/user';
 
 const Header = () => {
 
-    const {logout} = useAuth()
+    const { logout } = useAuth()
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     async function acc_logout() {
         await logout()
-        dispatch(clearUserData());
         navigate('/')
     }
 
     const userName = useSelector((state) => state.user.value.name);
+    const userImage = useSelector((state) => state.user.value.profileImage.url);
 
     return (
         <Navbar className='navbar' collapseOnSelect expand="lg" variant="dark">
@@ -39,7 +36,7 @@ const Header = () => {
                                     </Col>
                                     <Col md={3} xs={12}>
                                         <img
-                                            src={photo}
+                                            src={userImage}
                                             width="40"
                                             height="40"
                                             className="d-block m-auto"

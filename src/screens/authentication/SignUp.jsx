@@ -24,6 +24,10 @@ const Signup = () => {
             uid: uid,
             email: email,
             name: 'NEW USER',
+            profileImage:{
+                location: 'usersImages/Person.jpg',
+                url:'https://firebasestorage.googleapis.com/v0/b/monopoly-auth.appspot.com/o/usersImages%2FPerson.jpg?alt=media&token=29357543-14db-4872-9140-9746fa678983',
+            },
             games: {
                 total: 0,
                 wins: 0,
@@ -51,7 +55,8 @@ const Signup = () => {
             await signup(emailRef.current.value, passwordRef.current.value);
             navigate("/login");
         } catch {
-            setError("Failed to create an authenticationaccount, enter valid email");
+            setError("Failed to create an account, enter valid email");
+            setLoading(false);
         }
         await createUser(getUserUID(), emailRef.current.value);
         setLoading(false);

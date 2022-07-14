@@ -4,25 +4,21 @@ $darkness: rgba(0, 0, 0, 0.3);
 
 
 .footer {
-    background-color: rgba(0, 0, 0, 0.3);
-    width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
 
-    a{
-        color: $font-color;
-
-        &:hover{
-            color: $font-color;
-            text-decoration-color: red;
-        }
-    }
+  a {
+    color: #a6a6a6;
+  }
 }
 
-.social{
-    span{
-        margin: 10px;
-    }
-    img{
-        height: 40px;
-        margin: 5px;
-    }
+.social {
+  span {
+    margin: 10px;
+  }
+
+  img {
+    height: 40px;
+    margin: 5px;
+  }
 }
